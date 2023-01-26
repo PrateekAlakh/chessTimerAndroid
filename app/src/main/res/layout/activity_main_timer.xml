@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#453B3B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" >
+        <TextView
+            android:id="@+id/player_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="120sp"
+            android:text="50:00"
+            android:clickable="true"
+            android:gravity="center"
+            android:rotation="180"
+            android:onClick="playerTurnSwitch"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/pause_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/pause_game"
+                android:onClick="pauseGame"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/resume_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/resume_game"
+                android:onClick="resumeGame"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/restart_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/restart_game"
+                android:onClick="restartGame"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5" >
+        <TextView
+            android:id="@+id/player_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="120sp"
+            android:text="50:00"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="playerTurnSwitch"
+            />
+    </LinearLayout>
+
+</LinearLayout>
