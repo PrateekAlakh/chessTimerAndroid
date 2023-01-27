@@ -5,27 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainTimer extends AppCompatActivity {
 
-//    Log log;
     private String maxTime;
     private Boolean playerOneFlag = true;
     private Boolean playerTwoFlag = true;
-    private Boolean gamePaused = true;
-    private int minsP1, minsP2, secsP1, secsP2, maxTimeSeconds;
+    private int minsP1, minsP2, secsP1, secsP2;
+
 
     CountDownTimer countDownTimer;
-
 
     TextView textViewPlayerOne, textViewPlayerTwo;
 
@@ -42,17 +35,15 @@ public class MainTimer extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Log.i("TAG", "Values received"+intent.getIntExtra("minutes", 20));
-
         minsP1 = intent.getIntExtra("minutes", 10);
         minsP2 = minsP1;
         secsP1 = intent.getIntExtra("seconds", 0);
         secsP2 = secsP1;
-        maxTimeSeconds = minsP1*60 + secsP1;
         maxTime = minsP1+":"+formatSecs(secsP1);
 
         textViewPlayerOne.setText(maxTime);
         textViewPlayerTwo.setText(maxTime);
+
     }
 
     private String formatSecs(int value){
@@ -62,7 +53,6 @@ public class MainTimer extends AppCompatActivity {
         return ""+value;
     }
     public void pauseGame(View view) throws InterruptedException {
-        gamePaused = true;
         if (countDownTimer != null){
             countDownTimer.cancel();
         }
@@ -76,8 +66,6 @@ public class MainTimer extends AppCompatActivity {
         }
         Thread.sleep(500);
         if (playerOneFlag){
-
-            gamePaused = false;
             countDownTimer = new CountDownTimer((minsP1*60+secsP1)*1000, 1000){
 
                 @Override
@@ -96,11 +84,9 @@ public class MainTimer extends AppCompatActivity {
                 public void onFinish() {
                     textViewPlayerOne.setText("Loser");
                     textViewPlayerTwo.setText("Winner");
-                    gamePaused = true;
                 }
             }.start();
         }else if (playerTwoFlag){
-            gamePaused = false;
             countDownTimer = new CountDownTimer((minsP2*60+secsP2)*1000, 1000){
 
                 @Override
@@ -119,14 +105,12 @@ public class MainTimer extends AppCompatActivity {
 
                     textViewPlayerOne.setText("Winner");
                     textViewPlayerTwo.setText("Loser");
-                    gamePaused = true;
                 }
             }.start();
         }
     }
 
     public void restartGame(View view) throws InterruptedException {
-        gamePaused = true;
         if (countDownTimer != null){
             countDownTimer.cancel();
         }
@@ -134,7 +118,6 @@ public class MainTimer extends AppCompatActivity {
     }
 
     public void playerTurnSwitch(View view) throws InterruptedException {
-        gamePaused = true;
         if (countDownTimer != null){
             countDownTimer.cancel();
         }
